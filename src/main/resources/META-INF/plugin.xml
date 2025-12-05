@@ -1,0 +1,51 @@
+<idea-plugin>
+    <id>com.advancedsca.plugin</id>
+    <name>Advanced SCA Scanner</name>
+    <vendor email="skosaraju@company.com">gs-skosaraju</vendor>
+    
+    <description><![CDATA[
+    <h1>🛡️ Advanced SCA Scanner</h1>
+    <p>Multi-source vulnerability scanner for IntelliJ IDEA. </p>
+    <ul>
+        <li>✅ 7 vulnerability data sources</li>
+        <li>✅ Reachability analysis</li>
+        <li>✅ CISA KEV integration</li>
+        <li>✅ Support for npm, Maven, Gradle, Python</li>
+    </ul>
+    ]]></description>
+    
+    <depends>com.intellij.modules. platform</depends>
+    <depends>com.intellij.modules.java</depends>
+    
+    <extensions defaultExtensionNs="com. intellij">
+        <toolWindow 
+            id="SCA Scanner" 
+            anchor="bottom"
+            icon="/icons/shield.svg"
+            factoryClass="com.advancedsca.plugin.SCAToolWindowFactory"/>
+        
+        <projectService 
+            serviceImplementation="com.advancedsca.plugin.SCAService"/>
+    </extensions>
+    
+    <actions>
+        <group id="SCA. MenuGroup" text="SCA Scanner" popup="true">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            
+            <action 
+                id="SCA. Scan" 
+                class="com.advancedsca.plugin.ScanAction"
+                text="Run Security Scan"
+                icon="AllIcons.Actions.Find">
+                <keyboard-shortcut first-keystroke="ctrl alt shift S" keymap="$default"/>
+            </action>
+            
+            <action 
+                id="SCA.QuickScan"
+                class="com.advancedsca.plugin.QuickScanAction"
+                text="Quick Scan"
+                icon="AllIcons.Actions.Lightning">
+            </action>
+        </group>
+    </actions>
+</idea-plugin>
